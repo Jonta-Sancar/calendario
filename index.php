@@ -1,0 +1,349 @@
+<?php
+require_once './funcoes.php';
+
+$dias_de_aula = ['Segunda-feira', 'Terça-feira'];
+
+$data_inicio = '2025-01-27';
+
+$semanas = retornarSemanas($data_inicio, $dias_de_aula);
+
+echo '<pre>';
+print_r($semanas);
+echo '</pre>';
+
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teste calendário</title>
+
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        table, td, th{
+            border-collapse: collapse;
+            border: 1px solid #aaa;
+            margin: auto;
+        }
+
+        td, th{
+            padding: 3px 15px;
+            font-size: .9em;
+        }
+
+        th{
+            background-color: #ddd;
+        }
+        th.inicio{
+            background-color: #c0c0c0;
+        }
+
+        td{
+            text-align: center;
+            min-width: 70px;
+        }
+
+        .green{
+            background-color: green;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .red{
+            background-color: red;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="12">CRONOGRAMA - TURMA</th>
+            </tr>
+    
+            <tr>
+                <th class="inicio" colspan="2">AMBIENTAÇÃO</th>
+                <th class="inicio" colspan="2">mod. 1 - etp. 1</th>
+                <th colspan="2">mod. 1 - etp. 2</th>
+                <th colspan="2">mod. 1 - etp. 3</th>
+                <th colspan="2">mod. 1 - etp. 4</th>
+                <th colspan="2">mod. 1 - etp. 5</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td data-order="1">--/--/----</td>
+                <td data-order="3"></td>
+                <td data-order="5">--/--/----</td>
+                <td data-order="7"></td>
+                <td data-order="9">--/--/----</td>
+                <td data-order="11"></td>
+                <td data-order="13">--/--/----</td>
+                <td data-order="15"></td>
+                <td data-order="17">--/--/----</td>
+                <td data-order="19"></td>
+                <td data-order="21">--/--/----</td>
+                <td data-order="23"></td>
+            </tr>
+            <tr>
+                <td data-order="2">--/--/----</td>
+                <td data-order="4"></td>
+                <td data-order="6">--/--/----</td>
+                <td data-order="8"></td>
+                <td data-order="10">--/--/----</td>
+                <td data-order="12"></td>
+                <td data-order="14">--/--/----</td>
+                <td data-order="16"></td>
+                <td data-order="18">--/--/----</td>
+                <td data-order="20"></td>
+                <td data-order="22">--/--/----</td>
+                <td data-order="24"></td>
+            </tr>
+        </tbody>
+
+        <thead>
+            <tr>
+                <th colspan="2">FECHAMENTO 1/3</th>
+                <th class="inicio" colspan="2">mod. 2 - etp. 1</th>
+                <th colspan="2">mod. 2 - etp. 2</th>
+                <th colspan="2">mod. 2 - etp. 3</th>
+                <th colspan="2">mod. 2 - etp. 4</th>
+                <th colspan="2">mod. 2 - etp. 5</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td data-order="1">--/--/----</td>
+                <td data-order="3"></td>
+                <td data-order="5">--/--/----</td>
+                <td data-order="7"></td>
+                <td data-order="9">--/--/----</td>
+                <td data-order="11"></td>
+                <td data-order="13">--/--/----</td>
+                <td data-order="15"></td>
+                <td data-order="17">--/--/----</td>
+                <td data-order="19"></td>
+                <td data-order="21">--/--/----</td>
+                <td data-order="23"></td>
+            </tr>
+            <tr>
+                <td data-order="2">--/--/----</td>
+                <td data-order="4"></td>
+                <td data-order="6">--/--/----</td>
+                <td data-order="8"></td>
+                <td data-order="10">--/--/----</td>
+                <td data-order="12"></td>
+                <td data-order="14">--/--/----</td>
+                <td data-order="16"></td>
+                <td data-order="18">--/--/----</td>
+                <td data-order="20"></td>
+                <td data-order="22">--/--/----</td>
+                <td data-order="24"></td>
+            </tr>
+        </tbody>
+
+        <thead>
+            <tr>
+                <th colspan="2">FECHAMENTO 2/3</th>
+                <th class="inicio" colspan="2">mod. 3 - etp. 1</th>
+                <th colspan="2">mod. 3 - etp. 2</th>
+                <th class="inicio" colspan="2">mod. 4 - etp. 1</th>
+                <th colspan="2">mod. 4 - etp. 2</th>
+                <th colspan="2">mod. 4 - etp. 3</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td data-order="1">--/--/----</td>
+                <td data-order="3"></td>
+                <td data-order="5">--/--/----</td>
+                <td data-order="7"></td>
+                <td data-order="9">--/--/----</td>
+                <td data-order="11"></td>
+                <td data-order="13">--/--/----</td>
+                <td data-order="15"></td>
+                <td data-order="17">--/--/----</td>
+                <td data-order="19"></td>
+                <td data-order="21">--/--/----</td>
+                <td data-order="23"></td>
+            </tr>
+            <tr>
+                <td data-order="2">--/--/----</td>
+                <td data-order="4"></td>
+                <td data-order="6">--/--/----</td>
+                <td data-order="8"></td>
+                <td data-order="10">--/--/----</td>
+                <td data-order="12"></td>
+                <td data-order="14">--/--/----</td>
+                <td data-order="16"></td>
+                <td data-order="18">--/--/----</td>
+                <td data-order="20"></td>
+                <td data-order="22">--/--/----</td>
+                <td data-order="24"></td>
+            </tr>
+        </tbody>
+
+        <thead>
+            <tr>
+                <th colspan="2">mod. 4 - etp. 4</th>
+                <th colspan="2">mod. 4 - etp. 5</th>
+                <th colspan="2">mod. 4 - etp. 6</th>
+                <th colspan="2">FECHAMENTO 3/3</th>
+                <th class="inicio" colspan="2">mod. 5 - etp. 1</th>
+                <th colspan="2">mod. 5 - etp. 2</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td data-order="1">--/--/----</td>
+                <td data-order="3"></td>
+                <td data-order="5">--/--/----</td>
+                <td data-order="7"></td>
+                <td data-order="9">--/--/----</td>
+                <td data-order="11"></td>
+                <td data-order="13">--/--/----</td>
+                <td data-order="15"></td>
+                <td data-order="17">--/--/----</td>
+                <td data-order="19"></td>
+                <td data-order="21">--/--/----</td>
+                <td data-order="23"></td>
+            </tr>
+            <tr>
+                <td data-order="2">--/--/----</td>
+                <td data-order="4"></td>
+                <td data-order="6">--/--/----</td>
+                <td data-order="8"></td>
+                <td data-order="10">--/--/----</td>
+                <td data-order="12"></td>
+                <td data-order="14">--/--/----</td>
+                <td data-order="16"></td>
+                <td data-order="18">--/--/----</td>
+                <td data-order="20"></td>
+                <td data-order="22">--/--/----</td>
+                <td data-order="24"></td>
+            </tr>
+        </tbody>
+
+        <thead>
+            <tr>
+                <th colspan="2">mod. 5 - etp. 3</th>
+                <th colspan="2">mod. 5 - etp. 4</th>
+                <th colspan="2">mod. 5 - etp. 5</th>
+                <th colspan="2">mod. 5 - etp. 6</th>
+                <th colspan="2">PROJETO FINAL</th>
+                <th class="inicio" colspan="2">mod. 6 - etp. 1</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td data-order="1">--/--/----</td>
+                <td data-order="3"></td>
+                <td data-order="5">--/--/----</td>
+                <td data-order="7"></td>
+                <td data-order="9">--/--/----</td>
+                <td data-order="11"></td>
+                <td data-order="13">--/--/----</td>
+                <td data-order="15"></td>
+                <td data-order="17" colspan="2" rowspan="2">--/--/----</td>
+                <td data-order="21">--/--/----</td>
+                <td data-order="23"></td>
+            </tr>
+            <tr>
+                <td data-order="2">--/--/----</td>
+                <td data-order="4"></td>
+                <td data-order="6">--/--/----</td>
+                <td data-order="8"></td>
+                <td data-order="10">--/--/----</td>
+                <td data-order="12"></td>
+                <td data-order="14">--/--/----</td>
+                <td data-order="16"></td>
+                <td data-order="22">--/--/----</td>
+                <td data-order="24"></td>
+            </tr>
+        </tbody>
+
+        <thead>
+            <tr>
+                <th colspan="2">mod. 6 - etp. 2</th>
+                <th colspan="2">mod. 6 - etp. 3</th>
+                <th colspan="2">mod. 6 - etp. 4</th>
+                <th colspan="2">mod. 6 - etp. 5</th>
+                <th colspan="2">mod. 6 - etp. 6</th>
+                <th colspan="2">mod. 6 - etp. 7</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td data-order="1">--/--/----</td>
+                <td data-order="3"></td>
+                <td data-order="5">--/--/----</td>
+                <td data-order="7"></td>
+                <td data-order="9">--/--/----</td>
+                <td data-order="11"></td>
+                <td data-order="13">--/--/----</td>
+                <td data-order="15"></td>
+                <td data-order="17">--/--/----</td>
+                <td data-order="19"></td>
+                <td data-order="21">--/--/----</td>
+                <td data-order="23"></td>
+            </tr>
+            <tr>
+                <td data-order="2">--/--/----</td>
+                <td data-order="4"></td>
+                <td data-order="6">--/--/----</td>
+                <td data-order="8"></td>
+                <td data-order="10">--/--/----</td>
+                <td data-order="12"></td>
+                <td data-order="14">--/--/----</td>
+                <td data-order="16"></td>
+                <td data-order="18">--/--/----</td>
+                <td data-order="20"></td>
+                <td data-order="22">--/--/----</td>
+                <td data-order="24"></td>
+            </tr>
+        </tbody>
+
+        <thead>
+            <tr>
+                <th colspan="2">PROJETO LARAVEL</th>
+                <th colspan="4">Professor</th>
+                <th colspan="6">Legenda</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td data-order="1">--/--/----</td>
+                <td data-order="3"></td>
+                <td colspan="4">Nome Do Professor</td>
+                <td class="green"></td>
+                <td colspan="2">Aulas que já aconteceram</td>
+                <td class="blue"></td>
+                <td colspan="2">Entregas</td>
+            </tr>
+            <tr>
+                <td data-order="2">--/--/----</td>
+                <td data-order="4"></td>
+                <th>Projeto:</th>
+                <td colspan="3" class="text-right">Individual</td>
+                <td class="red"></td>
+                <td colspan="2">Feriados e afins</td>
+                <td class="yellow"></td>
+                <td colspan="2">Reposições de feriados e afins</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
