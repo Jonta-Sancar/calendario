@@ -6,11 +6,6 @@ $dias_de_aula = ['Segunda-feira', 'Terça-feira'];
 $data_inicio = '2025-01-27';
 
 $semanas = retornarSemanas($data_inicio, $dias_de_aula);
-
-echo '<pre>';
-print_r($semanas);
-echo '</pre>';
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -77,7 +72,7 @@ echo '</pre>';
             </tr>
         </thead>
 
-        <tbody>
+        <tbody class="datas">
             <tr>
                 <td data-order="1">--/--/----</td>
                 <td data-order="3"></td>
@@ -119,7 +114,7 @@ echo '</pre>';
             </tr>
         </thead>
 
-        <tbody>
+        <tbody class="datas">
             <tr>
                 <td data-order="1">--/--/----</td>
                 <td data-order="3"></td>
@@ -161,7 +156,7 @@ echo '</pre>';
             </tr>
         </thead>
 
-        <tbody>
+        <tbody class="datas">
             <tr>
                 <td data-order="1">--/--/----</td>
                 <td data-order="3"></td>
@@ -203,7 +198,7 @@ echo '</pre>';
             </tr>
         </thead>
 
-        <tbody>
+        <tbody class="datas">
             <tr>
                 <td data-order="1">--/--/----</td>
                 <td data-order="3"></td>
@@ -245,7 +240,7 @@ echo '</pre>';
             </tr>
         </thead>
 
-        <tbody>
+        <tbody class="datas">
             <tr>
                 <td data-order="1">--/--/----</td>
                 <td data-order="3"></td>
@@ -255,7 +250,7 @@ echo '</pre>';
                 <td data-order="11"></td>
                 <td data-order="13">--/--/----</td>
                 <td data-order="15"></td>
-                <td data-order="17" colspan="2" rowspan="2">--/--/----</td>
+                <td colspan="2" rowspan="2">--/--/----</td>
                 <td data-order="21">--/--/----</td>
                 <td data-order="23"></td>
             </tr>
@@ -284,7 +279,7 @@ echo '</pre>';
             </tr>
         </thead>
 
-        <tbody>
+        <tbody class="datas">
             <tr>
                 <td data-order="1">--/--/----</td>
                 <td data-order="3"></td>
@@ -323,7 +318,7 @@ echo '</pre>';
             </tr>
         </thead>
 
-        <tbody>
+        <tbody class="datas">
             <tr>
                 <td data-order="1">--/--/----</td>
                 <td data-order="3"></td>
@@ -345,5 +340,63 @@ echo '</pre>';
             </tr>
         </tbody>
     </table>
+
+    <script>
+        const semanas_json = `<?= json_encode($semanas); ?>`;
+        const semanas      = JSON.parse(semanas_json);
+        const quantos_dias = semanas[0].length;
+        
+        window.addEventListener('DOMContentLoaded', windowLoaded);
+
+        function windowLoaded(){
+            const tbodys = document.querySelectorAll('tbody.datas');
+
+            let tds = [];
+
+            for(let tbody of tbodys){
+                let __tds = tbody.querySelectorAll('td[data-order]');
+
+                __tds = reordenarTds(__tds);
+                
+                tds.push(...__tds);
+            }
+
+            preencherTds(tds);
+        }
+
+        function reordenarTds(tds){
+            tds = Array.from(tds);
+
+            tds.sort((a, b) => {
+                const orderA = parseInt(a.getAttribute('data-order'));
+                const orderB = parseInt(b.getAttribute('data-order'));
+
+                return orderA - orderB;
+            });
+
+            return tds;
+        }
+
+        function preencherTds(tds){
+            for(let i in semanas){
+                let td_i = i * (quantos_dias * 2);
+                
+                for(let _i in semanas[i]){
+                    td_i += parseInt(_i);
+
+                    const data = semanas[i][_i];
+                    tds[td_i].innerText = data;
+                    tds[td_i].dataset.date = ajusteFormatoData(data);
+                }
+            }
+        }
+
+        function ajusteFormatoData(data){
+            const data_arr = data.split('/');
+            data_arr.reverse();
+
+            return data_arr.join('-');
+        }
+    </script>
 </body>
 </html>
