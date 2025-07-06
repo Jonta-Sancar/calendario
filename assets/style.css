@@ -62,7 +62,7 @@ td{
 }
 
 .green{
-    background-color: #b6d7a8;
+    background-color: #b6d7a8 !important;
 }
 .blue{
     background-color: #9fc5e8;
