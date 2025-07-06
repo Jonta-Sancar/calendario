@@ -1,0 +1,76 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.t-left{
+    text-align: left;
+}
+.t-right{
+    text-align: right;
+}
+
+.editavel{
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    width: fit-content;
+    gap: 10px;
+    margin: 0px auto;
+    padding: 10px 0px;
+}
+
+form > *{
+    width: 150px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    border: 1px solid #000;
+    font-size: 14px;
+}
+
+input[type="button"]{
+    cursor: pointer;
+    transition: .3s;
+}
+input[type="button"]:hover{
+    background-color: #ccc;
+}
+
+table, td, th{
+    border-collapse: collapse;
+    border: 1px solid #aaa;
+    margin: auto;
+}
+
+td, th{
+    padding: 3px 15px;
+    font-size: .9em;
+}
+
+th{
+    background-color: #ddd;
+}
+th.inicio{
+    background-color: #c0c0c0;
+}
+
+td{
+    text-align: center;
+    min-width: 70px;
+    height: 20px;
+}
+
+.green{
+    background-color: #b6d7a8;
+}
+.blue{
+    background-color: #9fc5e8;
+}
+.red{
+    background-color: #ea9999;
+}
+.yellow{
+    background-color: #ffff00;
+}
+    

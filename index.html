@@ -1,65 +1,40 @@
-<?php
-require_once './funcoes.php';
-
-$dias_de_aula = ['Segunda-feira', 'Terça-feira'];
-
-$data_inicio = '2025-01-27';
-
-$semanas = retornarSemanas($data_inicio, $dias_de_aula);
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>teste calendário</title>
+    <title>Calendário Turmas</title>
 
-    <style>
-        body{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        table, td, th{
-            border-collapse: collapse;
-            border: 1px solid #aaa;
-            margin: auto;
-        }
-
-        td, th{
-            padding: 3px 15px;
-            font-size: .9em;
-        }
-
-        th{
-            background-color: #ddd;
-        }
-        th.inicio{
-            background-color: #c0c0c0;
-        }
-
-        td{
-            text-align: center;
-            min-width: 70px;
-        }
-
-        .green{
-            background-color: green;
-        }
-        .blue{
-            background-color: blue;
-        }
-        .red{
-            background-color: red;
-        }
-        .yellow{
-            background-color: yellow;
-        }
-    </style>
+    <link rel="stylesheet" href="https://jonta-sancar.github.io/sancarPlus/selectPlus.css">
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+    <form>
+        <input type="text" name="turma" id="turma" placeholder="Turma?" required value="qq">
+        
+        <div style="border: none;">
+            <select class="select-select multiple" name="dias[]" id="dias" multiple>
+                <option value=""  disabled>Dias da semana</option>
+                <option class="fixed">Domingo</option>
+                <option class="fixed" selected>Segunda-feira</option>
+                <option class="fixed" selected>Terça-feira</option>
+                <option class="fixed">Quarta-feira</option>
+                <option class="fixed">Quinta-feira</option>
+                <option class="fixed">Sexta-feira</option>
+                <option class="fixed">Sábado</option>
+            </select>
+        </div>
+        
+        <input type="date" name="dataInicio" id="dataInicio" placeholder="Data de início" required value="2025-01-27">
+
+        <input type="button" value="Gerar Cronograma" id="gerarCronograma">
+    </form>
+    <br>
+
     <table>
         <thead>
             <tr>
-                <th colspan="12">CRONOGRAMA - TURMA</th>
+                <th colspan="12">CRONOGRAMA - TURMA <span id="nome-turma"></span></th>
             </tr>
     
             <tr>
@@ -130,7 +105,7 @@ $semanas = retornarSemanas($data_inicio, $dias_de_aula);
                 <td data-order="23"></td>
             </tr>
             <tr>
-                <td data-order="2">--/--/----</td>
+                <td data-order="2" class="blue">--/--/----</td>
                 <td data-order="4"></td>
                 <td data-order="6">--/--/----</td>
                 <td data-order="8"></td>
@@ -172,7 +147,7 @@ $semanas = retornarSemanas($data_inicio, $dias_de_aula);
                 <td data-order="23"></td>
             </tr>
             <tr>
-                <td data-order="2">--/--/----</td>
+                <td data-order="2" class="blue">--/--/----</td>
                 <td data-order="4"></td>
                 <td data-order="6">--/--/----</td>
                 <td data-order="8"></td>
@@ -220,7 +195,7 @@ $semanas = retornarSemanas($data_inicio, $dias_de_aula);
                 <td data-order="8"></td>
                 <td data-order="10">--/--/----</td>
                 <td data-order="12"></td>
-                <td data-order="14">--/--/----</td>
+                <td data-order="14" class="blue">--/--/----</td>
                 <td data-order="16"></td>
                 <td data-order="18">--/--/----</td>
                 <td data-order="20"></td>
@@ -250,7 +225,7 @@ $semanas = retornarSemanas($data_inicio, $dias_de_aula);
                 <td data-order="11"></td>
                 <td data-order="13">--/--/----</td>
                 <td data-order="15"></td>
-                <td colspan="2" rowspan="2">--/--/----</td>
+                <td colspan="2" rowspan="2" class="blue editavel">--/--/----</td>
                 <td data-order="21">--/--/----</td>
                 <td data-order="23"></td>
             </tr>
@@ -322,81 +297,26 @@ $semanas = retornarSemanas($data_inicio, $dias_de_aula);
             <tr>
                 <td data-order="1">--/--/----</td>
                 <td data-order="3"></td>
-                <td colspan="4">Nome Do Professor</td>
+                <td colspan="4" class="editavel">Nome Do Professor</td>
                 <td class="green"></td>
-                <td colspan="2">Aulas que já aconteceram</td>
+                <td colspan="2" class="t-left">Aulas que já aconteceram</td>
                 <td class="blue"></td>
-                <td colspan="2">Entregas</td>
+                <td colspan="2" class="t-left">Entregas</td>
             </tr>
             <tr>
-                <td data-order="2">--/--/----</td>
+                <td data-order="2" class="blue">--/--/----</td>
                 <td data-order="4"></td>
                 <th>Projeto:</th>
-                <td colspan="3" class="text-right">Individual</td>
+                <td colspan="3" class="t-right editavel">Individual</td>
                 <td class="red"></td>
-                <td colspan="2">Feriados e afins</td>
+                <td colspan="2" class="t-left">Feriados e afins</td>
                 <td class="yellow"></td>
-                <td colspan="2">Reposições de feriados e afins</td>
+                <td colspan="2" class="t-left">Reposições de feriados e afins</td>
             </tr>
         </tbody>
     </table>
 
-    <script>
-        const semanas_json = `<?= json_encode($semanas); ?>`;
-        const semanas      = JSON.parse(semanas_json);
-        const quantos_dias = semanas[0].length;
-        
-        window.addEventListener('DOMContentLoaded', windowLoaded);
-
-        function windowLoaded(){
-            const tbodys = document.querySelectorAll('tbody.datas');
-
-            let tds = [];
-
-            for(let tbody of tbodys){
-                let __tds = tbody.querySelectorAll('td[data-order]');
-
-                __tds = reordenarTds(__tds);
-                
-                tds.push(...__tds);
-            }
-
-            preencherTds(tds);
-        }
-
-        function reordenarTds(tds){
-            tds = Array.from(tds);
-
-            tds.sort((a, b) => {
-                const orderA = parseInt(a.getAttribute('data-order'));
-                const orderB = parseInt(b.getAttribute('data-order'));
-
-                return orderA - orderB;
-            });
-
-            return tds;
-        }
-
-        function preencherTds(tds){
-            for(let i in semanas){
-                let td_i = i * (quantos_dias * 2);
-                
-                for(let _i in semanas[i]){
-                    td_i += parseInt(_i);
-
-                    const data = semanas[i][_i];
-                    tds[td_i].innerText = data;
-                    tds[td_i].dataset.date = ajusteFormatoData(data);
-                }
-            }
-        }
-
-        function ajusteFormatoData(data){
-            const data_arr = data.split('/');
-            data_arr.reverse();
-
-            return data_arr.join('-');
-        }
-    </script>
+    <script src="https://jonta-sancar.github.io/sancarPlus/selectPlus.js"></script>
+    <script src="./assets/script.js"></script>
 </body>
 </html>
