@@ -168,7 +168,7 @@ function resetarTds(){
 
         td.dataset.date = '';
         td.dataset.modyfied = false;
-        td.classList.remove('green', 'blue', 'gray', 'red', 'yellow');
+        td.classList.remove('green', 'gray', 'red', 'yellow');
     }
 }
 
@@ -188,12 +188,12 @@ function ajustarVisualizacao(){
 
         if(data_td < data_hoje){
             td.classList.add('green');
-            td.classList.remove('blue', 'gray', 'red');
+            td.classList.remove('gray', 'red');
         } else if(data_td === data_hoje){
             td.classList.add('gray');
-            td.classList.remove('blue', 'green', 'red');
+            td.classList.remove('green', 'red');
         } else {
-            td.classList.remove('gray', 'blue');
+            td.classList.remove('gray');
         }
     }
 }
