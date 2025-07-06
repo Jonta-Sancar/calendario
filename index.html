@@ -10,14 +10,13 @@
 </head>
 <body>
     <form>
-        <input type="text" name="turma" id="turma" placeholder="Turma?" required value="qq">
+        <input type="text" name="turma" id="turma" placeholder="Turma?" required>
         
         <div style="border: none;">
             <select class="select-select multiple" name="dias[]" id="dias" multiple>
-                <option value=""  disabled>Dias da semana</option>
                 <option class="fixed">Domingo</option>
-                <option class="fixed" selected>Segunda-feira</option>
-                <option class="fixed" selected>Terça-feira</option>
+                <option class="fixed">Segunda-feira</option>
+                <option class="fixed">Terça-feira</option>
                 <option class="fixed">Quarta-feira</option>
                 <option class="fixed">Quinta-feira</option>
                 <option class="fixed">Sexta-feira</option>
@@ -25,7 +24,7 @@
             </select>
         </div>
         
-        <input type="date" name="dataInicio" id="dataInicio" placeholder="Data de início" required value="2025-01-27">
+        <input type="date" name="dataInicio" id="dataInicio" placeholder="Data de início" required>
 
         <input type="button" value="Gerar Cronograma" id="gerarCronograma">
     </form>
@@ -225,7 +224,7 @@
                 <td data-order="11"></td>
                 <td data-order="13">--/--/----</td>
                 <td data-order="15"></td>
-                <td colspan="2" rowspan="2" class="blue editavel">--/--/----</td>
+                <td colspan="2" rowspan="2" class="blue editavel">A definir</td>
                 <td data-order="21">--/--/----</td>
                 <td data-order="23"></td>
             </tr>
